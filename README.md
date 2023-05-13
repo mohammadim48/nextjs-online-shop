@@ -17,7 +17,7 @@ This is an e-commerce project developed with Next.js and React. The project incl
 
 1. Clone the repository:
 ```
-git clone https://github.com/your-username/online-store.git
+git clone https://github.com/mohammadim48/nextjs-online-shop.git
 ```
 2. Install dependencies:
 ```
