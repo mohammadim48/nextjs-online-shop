@@ -5,7 +5,7 @@ This is an e-commerce project developed with Next.js and React. The project incl
 ## Features
 
 - Next.js Framework
-- React 17
+- React 18
 - Server-Side Rendering
 - Search Functionality
 - Shopping Cart Functionality
