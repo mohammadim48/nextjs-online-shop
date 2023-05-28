@@ -1,33 +1,7 @@
-import { Form, FormikProps, withFormik } from "formik";
-import Input from "shopy/app/components/shared/form/input";
+import {  withFormik } from "formik";
+import InnerRegisterForm from "shopy/app/components/auth/innerRegisterForm";
+import { RegisterFormValuesInterface } from "shopy/app/contracts/auth";
 import * as yup from "yup";
-
-interface RegisterFormValues {
-    name: string,
-    email: string,
-    password: string
-}
-
-const InnerRegisterForm = (props: FormikProps<RegisterFormValues>) => {
-
-    return (
-        <>
-            <Form className="space-y-4 md:space-y-6">
-                <div>
-                    <Input name="email" type="email" label="Email Address" placeholder="Enter your Email" />
-                </div>
-                <div>
-                    <Input name="name" label="Name" placeholder="Enter your Name" />
-                </div>
-                <div>
-                    <Input name="password" label="Your Password" type="password" placeholder="Enter your Password" />
-                </div>
-                <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create an account</button>
-            </Form>
-        </>
-    )
-
-}
 
 
 interface RegisterFormProps {
@@ -42,7 +16,7 @@ const registerFormValidationSchema = yup.object().shape({
     password: yup.string().required().min(8)
 })
 
-const RegisterForm = withFormik<RegisterFormValues, RegisterFormProps>({
+const RegisterForm = withFormik<RegisterFormValuesInterface, RegisterFormProps>({
     mapPropsToValues: props => {
         return {
             name: props.name ?? '',
