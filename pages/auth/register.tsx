@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import RegisterForm from "shopy/app/forms/auth/registerForm";
+import { useRouter } from 'next/router';
 
 const Register: NextPage = () => {
 
@@ -16,7 +17,7 @@ const Register: NextPage = () => {
                             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                 Create and account
                             </h1>
-                            <RegisterForm name="" email="" password=""/>
+                            <RegisterForm name="" email="" password="" />
                         </div>
                     </div>
                 </div>
@@ -26,4 +27,6 @@ const Register: NextPage = () => {
         </div>
     )
 }
+
+
 export default Register

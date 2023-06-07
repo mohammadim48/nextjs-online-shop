@@ -1,32 +1,33 @@
 import {  withFormik } from "formik";
-import InnerRegisterForm from "shopy/app/components/auth/innerRegisterForm";
-import { RegisterFormValuesInterface } from "shopy/app/contracts/auth";
+import Router from "next/router";
 import * as yup from "yup";
 
+import InnerRegisterForm from "../../components/auth/innerRegisterForm";
+import { RegisterFormValuesInterface } from "../../contracts/auth";
+import callApi from "./../../helper/callApi";
 
-interface RegisterFormProps {
-    name: string
-    email: string
-    password: string
-}
 
 const registerFormValidationSchema = yup.object().shape({
-    name: yup.string().required().min(4),
-    email: yup.string().required().email(),
-    password: yup.string().required().min(8)
+    name : yup.string().required().min(4),
+    email : yup.string().required().email(),
+    password : yup.string().required().min(8)
 })
 
-const RegisterForm = withFormik<RegisterFormValuesInterface, RegisterFormProps>({
-    mapPropsToValues: props => {
-        return {
-            name: props.name ?? '',
-            email: '',
-            password: ''
-        }
-    },
+interface RegisterFormProps {
+}
+
+const RegisterForm = withFormik<RegisterFormProps , RegisterFormValuesInterface>({
+    mapPropsToValues : props => ({
+        name : '',
+        email : '',
+        password : ''
+    }),
     validationSchema: registerFormValidationSchema,
-    handleSubmit: (values) => {
-        console.log(values)
+    handleSubmit : async (values) => {
+        const res = await callApi().post('/auth/register' , values);
+        if(res.status === 201) {
+            Router.push('/auth/login')
+        }
     }
 })(InnerRegisterForm)
 
